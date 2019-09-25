@@ -72,6 +72,7 @@ public class ProduceMessageRequestHandler implements JoyQueueCommandHandler, Typ
     private ProduceConfig produceConfig;
     private Produce produce;
     private ClusterManager clusterManager;
+    private static final String PROPERTY_KEY="pid.LONG";
 
     @Override
     public void setJoyQueueContext(JoyQueueContext joyQueueContext) {
@@ -96,11 +97,19 @@ public class ProduceMessageRequestHandler implements JoyQueueCommandHandler, Typ
         CountDownLatch latch = new CountDownLatch(produceMessageRequest.getData().size());
         Map<String, ProduceMessageAckData> resultData = Maps.newConcurrentMap();
         Traffic traffic = new Traffic(produceMessageRequest.getApp());
-
+        //  log per msg  key info
         for (Map.Entry<String, ProduceMessageData> entry : produceMessageRequest.getData().entrySet()) {
             String topic = entry.getKey();
             ProduceMessageData produceMessageData = entry.getValue();
-
+            if(produceMessageData.getMessages()!=null){
+                for(BrokerMessage msg:produceMessageData.getMessages()){
+                   String property_tag= msg.getAttribute(PROPERTY_KEY);
+                   if(property_tag!=null){
+                       logger.info("topic:{},app:{},qos level:{},property tag:{}",msg.getTopic(),msg.getApp(),
+                                    produceMessageData.getQosLevel().name(),property_tag);
+                   }
+                }
+            }
             // 校验
             try {
                 checkAndFillMessage(connection, produceMessageData);
