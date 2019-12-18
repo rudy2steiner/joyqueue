@@ -148,7 +148,7 @@ export default {
         pageResult.pagination = pageResult.pagination || {
           totalRecord: pageResult.data.length
         }
-        this.broker=realData.extras;
+        this.broker=realData.partitionGroupLeaderInfo;
         this.page.total = pageResult.pagination.totalRecord
         this.page.page = pageResult.pagination.page
         this.page.size = pageResult.pagination.size

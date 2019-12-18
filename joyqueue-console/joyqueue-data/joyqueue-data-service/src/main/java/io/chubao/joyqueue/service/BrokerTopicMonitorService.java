@@ -16,7 +16,7 @@
 package io.chubao.joyqueue.service;
 
 import io.chubao.joyqueue.model.PageResult;
-import io.chubao.joyqueue.model.PageWithExtra;
+import io.chubao.joyqueue.model.BrokerTopicMonitorPage;
 import io.chubao.joyqueue.model.QPageQuery;
 import io.chubao.joyqueue.monitor.BrokerMonitorInfo;
 import io.chubao.joyqueue.monitor.BrokerStartupInfo;
@@ -28,7 +28,7 @@ import io.chubao.joyqueue.model.query.QMonitor;
  * Created by wangxiaofei1 on 2019/3/13.
  */
 public interface BrokerTopicMonitorService {
-    PageWithExtra<BrokerTopicMonitor> queryTopicsPartitionMonitor(QPageQuery<QMonitor> qPageQuery);
+    BrokerTopicMonitorPage queryTopicsPartitionMonitor(QPageQuery<QMonitor> qPageQuery);
     PageResult<Client> queryClientConnectionDetail(QPageQuery<QMonitor> qPageQuery);
     PageResult<BrokerTopicMonitor> queryTopicsMointor(QPageQuery<QMonitor> qPageQuery);
     BrokerMonitorInfo findBrokerMonitor(Long brokerId);

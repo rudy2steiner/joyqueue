@@ -20,7 +20,7 @@ import io.chubao.joyqueue.domain.BrokerPartitionGroupLeaderInfo;
 import io.chubao.joyqueue.manage.PartitionGroupMetric;
 import io.chubao.joyqueue.manage.SortedTopic;
 import io.chubao.joyqueue.model.PageResult;
-import io.chubao.joyqueue.model.PageWithExtra;
+import io.chubao.joyqueue.model.BrokerTopicMonitorPage;
 import io.chubao.joyqueue.model.Pagination;
 import io.chubao.joyqueue.model.QPageQuery;
 import io.chubao.joyqueue.model.domain.Broker;
@@ -67,7 +67,7 @@ public class BrokerTopicMonitorServiceImpl implements BrokerTopicMonitorService 
 
 
     @Override
-    public PageWithExtra<BrokerTopicMonitor> queryTopicsPartitionMonitor(QPageQuery<QMonitor> qPageQuery)  {
+    public BrokerTopicMonitorPage queryTopicsPartitionMonitor(QPageQuery<QMonitor> qPageQuery)  {
 
         PageResult<BrokerTopicMonitor> pageResult = new PageResult<>();
         BrokerPartitionGroupLeaderInfo info=new BrokerPartitionGroupLeaderInfo();
@@ -106,9 +106,9 @@ public class BrokerTopicMonitorServiceImpl implements BrokerTopicMonitorService 
         } catch (Exception e) {
             logger.error("queryTopicsPartitionMonitor exception",e);
         }
-        PageWithExtra<BrokerTopicMonitor> result=new PageWithExtra();
+        BrokerTopicMonitorPage result=new BrokerTopicMonitorPage();
         result.setPageResult(pageResult);
-        result.setExtras(info);
+        result.setPartitionGroupLeaderInfo(info);
         return result;
     }
 

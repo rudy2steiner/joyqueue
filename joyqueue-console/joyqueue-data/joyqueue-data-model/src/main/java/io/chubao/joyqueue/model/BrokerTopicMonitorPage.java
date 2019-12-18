@@ -15,23 +15,26 @@
  */
 package io.chubao.joyqueue.model;
 
-public class PageWithExtra<T> {
-    private PageResult<T> pageResult;
-    private Object extras;
+import io.chubao.joyqueue.domain.BrokerPartitionGroupLeaderInfo;
+import io.chubao.joyqueue.model.domain.BrokerTopicMonitor;
 
-    public PageResult<T> getPageResult() {
+public class BrokerTopicMonitorPage {
+    private PageResult<BrokerTopicMonitor> pageResult;
+    private BrokerPartitionGroupLeaderInfo partitionGroupLeaderInfo;
+
+    public PageResult<BrokerTopicMonitor> getPageResult() {
         return pageResult;
     }
 
-    public void setPageResult(PageResult<T> pageResult) {
+    public void setPageResult(PageResult<BrokerTopicMonitor> pageResult) {
         this.pageResult = pageResult;
     }
 
-    public Object getExtras() {
-        return extras;
+    public BrokerPartitionGroupLeaderInfo getPartitionGroupLeaderInfo() {
+        return partitionGroupLeaderInfo;
     }
 
-    public void setExtras(Object extras) {
-        this.extras = extras;
+    public void setPartitionGroupLeaderInfo(BrokerPartitionGroupLeaderInfo partitionGroupLeaderInfo) {
+        this.partitionGroupLeaderInfo = partitionGroupLeaderInfo;
     }
 }
