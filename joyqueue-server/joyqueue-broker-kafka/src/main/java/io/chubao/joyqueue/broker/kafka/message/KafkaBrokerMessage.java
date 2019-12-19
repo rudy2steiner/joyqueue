@@ -27,12 +27,12 @@ public class KafkaBrokerMessage {
 
     public static final byte INVALID_MAGIC = -1;
     public static final int NO_SEQUENCE = -1;
-
+    public static final long NO_TIMESTAMP = -1;
     private int size;
     private byte magic = INVALID_MAGIC;
     private int crc;
     private short attribute;
-    private long timestamp;
+    private long timestamp = NO_TIMESTAMP;
     private byte[] key;
     private byte[] value;
     private long offset;
