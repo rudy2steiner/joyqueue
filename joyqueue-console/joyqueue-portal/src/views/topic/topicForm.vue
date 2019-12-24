@@ -53,7 +53,7 @@
       </div>
       <div class="step2" v-show="current===1">
         <div class="stepForm2">
-          <d-form ref="form" :model="formData" :rules="rules.rule2" label-width="100px">
+          <d-form ref="form" :model="formData" :rules="rules.rule2" label-width="100px" style="overflow-y:auto; height:430px">
             <add-broker ref="brokers" :model="formData.brokers" @on-choosed-broker="choosedBroker"
                         :urls="addBrokerUrls" :colData="addBrokerColData">
             </add-broker>
