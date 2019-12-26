@@ -439,7 +439,7 @@ class Workflow:
         table += align+'\n'
         for row in rows:
             table += '|'+'|'.join(map(str, row))+'|\n'
-        return table
+        return table+'\n'
 
     def __cleanup(self):
         self.logger.info('>>> start to clean up workspace.')

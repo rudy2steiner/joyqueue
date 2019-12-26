@@ -18,6 +18,7 @@ pipeline {
             steps {
                 echo 'Integrations Test....'
                 sh 'printenv'
+                sh 'docker ps'
                 dir('docker/bin'){
                     sh ' pwd && git branch '
                     updateGitlabCommitStatus name: 'build', state: 'running'
