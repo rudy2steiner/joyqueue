@@ -105,7 +105,7 @@ public class RetryServiceImpl implements RetryService {
     @Override
     public void recover(ConsumeRetry retry) throws Exception {
         check();
-        Long[] messageIds = {Long.valueOf(retry.getId())};
+        Long[] messageIds = {Long.valueOf(retry.getMessageId())};
         consoleMessageRetry.updateStatus(retry.getTopic(),retry.getApp(),messageIds, RetryStatus.RETRY_ING,retry.getUpdateTime(),retry.getUpdateBy());
     }
 
@@ -117,7 +117,7 @@ public class RetryServiceImpl implements RetryService {
     @Override
     public void delete(ConsumeRetry retry) throws Exception {
         check();
-        Long[] messageIds = {Long.valueOf(retry.getId())};
+        Long[] messageIds = {Long.valueOf(retry.getMessageId())};
         consoleMessageRetry.updateStatus(retry.getTopic(),retry.getApp(),messageIds, RetryStatus.RETRY_ING,retry.getUpdateTime(),retry.getUpdateBy());
     }
 
