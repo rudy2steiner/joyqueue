@@ -17,12 +17,18 @@ package io.chubao.joyqueue;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.jd.laf.extension.Instantiation;
+import com.jd.laf.extension.Name;
+import com.jd.laf.extension.Plugin;
+import com.jd.laf.extension.SpiLoader;
 import io.chubao.joyqueue.broker.Launcher;
+import io.chubao.joyqueue.broker.PluginsTest;
 import io.chubao.joyqueue.broker.config.Args;
 import io.chubao.joyqueue.broker.config.ConfigDef;
 import io.chubao.joyqueue.domain.Broker;
 import io.chubao.joyqueue.monitor.RestResponse;
 import io.chubao.joyqueue.monitor.RestResponseCode;
+import io.chubao.joyqueue.nsr.NameService;
 import io.chubao.joyqueue.toolkit.URL;
 import io.chubao.joyqueue.toolkit.io.Files;
 import io.chubao.joyqueue.toolkit.network.IpUtil;
@@ -34,10 +40,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -66,6 +69,18 @@ public class LauncherTest {
                 root.mkdirs();
             }
         }
+    }
+
+    @Test
+    public void launchNameservice(){
+//        NameService ns=  PluginsTest.NAMESERVICE.get();
+//        NameService nss=  PluginsTest.NAMESERVICEB.get();
+//        Assert.assertTrue(ns==nss);
+        Collection<Plugin<NameService>> plugins=SpiLoader.INSTANCE.load(NameService.class);
+        Plugin<NameService> pl=plugins.iterator().next();
+        NameService nameService= Instantiation.ClazzInstance.INSTANCE.newInstance(pl.getName());
+        NameService nameServiceB= Instantiation.ClazzInstance.INSTANCE.newInstance(pl.getName());
+        Assert.assertTrue(nameService!=nameServiceB);
     }
     @Test
     public void launchOneBroker(){
