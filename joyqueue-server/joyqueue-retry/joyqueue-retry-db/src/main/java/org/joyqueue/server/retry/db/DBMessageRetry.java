@@ -443,6 +443,7 @@ public class DBMessageRetry implements MessageRetry<Long> {
         }
     }
 
+    @Deprecated
     @Override
     public List<RetryMessageModel> getRetry(final String topic, final String app, final short count,
                                             final long startIndex) throws JoyQueueException {
