@@ -13,11 +13,13 @@
     <!-- 测试环境配置 -->
     <property>
         <name>hbase.zookeeper.quorum</name>
-        <value>192.168.112.172:2181,192.168.112.174:2181,192.168.112.175:2181</value>
+        <!--192.168.112.172:2181,192.168.112.174:2181,192.168.112.175:2181-->
+        <value>127.0.0.1:2181</value>
     </property>
     <property>
         <name>zookeeper.znode.parent</name>
-        <value>/hb/app01</value>
+        <value>/hbase</value>
+        <!--/hb/app01-->
     </property>
 
     <!-- 此参数决定了每次从服务器scan获取的数据量，默认会是1，性能很低，因此设置为100以上，每行数据太大的，可以小一些，否则可以更高 -->
